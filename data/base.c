@@ -1,5 +1,8 @@
 #include "<BASENAME>.h"
 
+// Code below is adapted from @modexpblog. Read linked article for more details.
+// https://www.mdsec.co.uk/2020/12/bypassing-user-mode-hooks-and-direct-invocation-of-system-calls-for-red-teams
+
 SW2_SYSCALL_LIST SW2_SyscallList;
 
 DWORD SW2_HashSyscall(PCSTR FunctionName)
