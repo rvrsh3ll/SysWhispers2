@@ -8,7 +8,7 @@ All core syscalls are supported from Windows XP to Windows 10. Example generated
 
 The usage is almost identical to [SysWhispers1](https://github.com/jthuraisamy/SysWhispers) but you don't have to specify which versions of Windows to support. Most of the changes are under the hood. It no longer relies on [@j00ru](https://twitter.com/j00ru)'s [syscall tables](https://github.com/j00ru/windows-syscalls), and instead uses the "[sorting by system call address](https://www.mdsec.co.uk/2020/12/bypassing-user-mode-hooks-and-direct-invocation-of-system-calls-for-red-teams/)" technique popularized by [@modexpblog](https://twitter.com/modexpblog). This significantly reduces the size of the syscall stubs.
 
-The specific implementation in SysWhispers2 is a variation of @modexpblog's code in his post. One difference is that the function name hashes are randomized on each generation. Another [implementation](https://www.crummie5.club/freshycalls/) by [@ElephantSe4l](https://twitter.com/ElephantSe4l) is also worth checking out.
+The specific implementation in SysWhispers2 is a variation of @modexpblog's code. One difference is that the function name hashes are randomized on each generation. Another [implementation](https://www.crummie5.club/freshycalls/) by [@ElephantSe4l](https://twitter.com/ElephantSe4l) is also worth checking out.
 
 The original SysWhispers repository is still up but may be deprecated in the future.
 
@@ -153,8 +153,6 @@ Using the `--preset common` switch will create a header/ASM pair with the follow
 
 ## Troubleshooting
 
-- `ModuleNotFoundError` in Python script.
-  - Ensure that the required modules are installed with `pip3 install -r requirements.txt`.
 - Type redefinitions errors: a project may not compile if typedefs in `syscalls.h` have already been defined.
   - Ensure that only required functions are included (i.e. `--preset all` is rarely necessary).
   - If a typedef is already defined in another used header, then it could be removed from `syscalls.h`.

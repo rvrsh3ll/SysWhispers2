@@ -43,7 +43,7 @@ BOOL SW2_PopulateSyscallList()
 
         ExportDirectory = (PIMAGE_EXPORT_DIRECTORY)SW2_RVA2VA(ULONG_PTR, DllBase, VirtualAddress);
 
-        // If this is NTDLL.dll, exit loop
+        // If this is NTDLL.dll, exit loop.
         PCHAR DllName = SW2_RVA2VA(PCHAR, DllBase, ExportDirectory->Name);
 
         if ((*(ULONG*)DllName | 0x20202020) != 'ldtn') continue;
