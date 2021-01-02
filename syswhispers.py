@@ -155,8 +155,8 @@ if __name__ == '__main__':
         ",-. . . ,-. . , , |-. o ,-. ,-. ,-. ,-. ,-.    / \n"
         "`-. | | `-. |/|/  | | | `-. | | |-' |   `-. ,-'  \n"
         "`-' `-| `-' ' '   ' ' ' `-' |-' `-' '   `-' `--- \n"
-        "     /|                     |                    \n"
-        "    `-'                     '   @Jackson_T, 2021 \n\n"
+        "     /|                     |  @Jackson_T        \n"
+        "    `-'                     '  @modexpblog, 2021 \n\n"
         "SysWhispers2: Why call the kernel when you can whisper?\n"
     )
 
@@ -214,7 +214,7 @@ if __name__ == '__main__':
     elif not args.functions:
         print('ERROR:   --preset XOR --functions switch must be specified.\n')
         print('EXAMPLE: ./syswhispers.py --preset common --out-file syscalls_common')
-        print('EXAMPLE: ./syswhispers.py --functions NtProtectVirtualMemory,NtWriteVirtualMemory --out-file syscalls_mem')
+        print('EXAMPLE: ./syswhispers.py --functions NtTestAlert,NtGetCurrentProcessorNumber --out-file syscalls_test')
 
     else:
         functions = args.functions.split(',') if args.functions else []

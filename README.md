@@ -8,7 +8,7 @@ All core syscalls are supported from Windows XP to Windows 10. Example generated
 
 The usage is almost identical to [SysWhispers1](https://github.com/jthuraisamy/SysWhispers) but you don't have to specify which versions of Windows to support. Most of the changes are under the hood. It no longer relies on [@j00ru](https://twitter.com/j00ru)'s [syscall tables](https://github.com/j00ru/windows-syscalls), and instead uses the "[sorting by system call address](https://www.mdsec.co.uk/2020/12/bypassing-user-mode-hooks-and-direct-invocation-of-system-calls-for-red-teams/)" technique popularized by [@modexpblog](https://twitter.com/modexpblog). This significantly reduces the size of the syscall stubs.
 
-The specific implementation in SysWhispers2 is a variation of @modexpblog's code. One difference is that the function name hashes are randomized on each generation. [@ElephantSe4l](https://twitter.com/ElephantSe4l), who had published this technique earlier, has another [implementation](https://www.crummie5.club/freshycalls/) which is also worth checking out.
+The specific implementation in SysWhispers2 is a variation of @modexpblog's code. One difference is that the function name hashes are randomized on each generation. [@ElephantSe4l](https://twitter.com/ElephantSe4l), who had [published]((https://www.crummie5.club/freshycalls/)) this technique earlier, has another [implementation](https://github.com/crummie5/FreshyCalls) based in C++17 which is also worth checking out.
 
 The original SysWhispers repository is still up but may be deprecated in the future.
 
@@ -50,8 +50,8 @@ PS C:\Projects\SysWhispers2> py .\syswhispers.py --preset common --out-file sysc
 ,-. . . ,-. . , , |-. o ,-. ,-. ,-. ,-. ,-.    / 
 `-. | | `-. |/|/  | | | `-. | | |-' |   `-. ,-'  
 `-' `-| `-' ' '   ' ' ' `-' |-' `-' '   `-' `--- 
-     /|                     |  @Jackson_T, 2021                 
-    `-'                     '                     
+     /|                     |  @Jackson_T                 
+    `-'                     '  @modexpblog, 2021
 
 SysWhispers2: Why call the kernel when you can whisper?
 
@@ -159,9 +159,8 @@ Using the `--preset common` switch will create a header/ASM pair with the follow
 
 ## Credits
 
-This script was developed by [@Jackson_T](https://twitter.com/Jackson_T) but builds upon the work of many others:
+Developed by [@Jackson_T](https://twitter.com/Jackson_T) and [@modexpblog](https://twitter.com/modexpblog), but builds upon the work of many others:
 
-- [@modexpblog](https://twitter.com/modexpblog) for their implementation of the address sorting technique to find syscall numbers.
 - [@FoxHex0ne](https://twitter.com/FoxHex0ne) for cataloguing many function prototypes and typedefs in a machine-readable format.
 - [@PetrBenes](https://twitter.com/PetrBenes), [NTInternals.net team](https://undocumented.ntinternals.net/), and [MSDN](https://docs.microsoft.com/en-us/windows/) for additional prototypes and typedefs.
 - [@Cn33liz](https://twitter.com/Cneelis) for the initial [Dumpert](https://github.com/outflanknl/Dumpert) POC implementation.
