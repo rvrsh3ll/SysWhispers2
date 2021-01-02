@@ -21,9 +21,8 @@ SysWhispers provides red teamers the ability to generate header/ASM pairs for an
 ## Installation
 
 ```bash
-> git clone https://github.com/jthuraisamy/SysWhispers.git
-> cd SysWhispers
-> pip3 install -r .\requirements.txt
+> git clone https://github.com/jthuraisamy/SysWhispers2.git
+> cd SysWhispers2
 > py .\syswhispers.py --help
 ```
 
@@ -45,7 +44,7 @@ py .\syswhispers.py --functions NtProtectVirtualMemory,NtWriteVirtualMemory -o s
 ### Script Output
 
 ```
-PS C:\Projects\SysWhispers> py .\syswhispers.py --preset common --out-file syscom
+PS C:\Projects\SysWhispers2> py .\syswhispers.py --preset common --out-file syscom
 
                   .                         ,--. 
 ,-. . . ,-. . , , |-. o ,-. ,-. ,-. ,-. ,-.    / 
