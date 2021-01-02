@@ -28,7 +28,7 @@ class SysWhispers(object):
 
         # Write ASM file.
         basename_suffix = 'stubs'
-        basename_suffix = basename_suffix.capitalize() if basename.istitle() else basename_suffix
+        basename_suffix = basename_suffix.capitalize() if os.path.basename(basename).istitle() else basename_suffix
         basename_suffix = f'_{basename_suffix}' if '_' in basename else basename_suffix
         with open(f'{basename}{basename_suffix}.asm', 'wb') as output_asm:
             output_asm.write(b'.code\n\nEXTERN SW2_GetSyscallNumber: PROC\n\n')
