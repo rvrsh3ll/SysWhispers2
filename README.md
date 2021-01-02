@@ -44,7 +44,7 @@ py .\syswhispers.py --functions NtProtectVirtualMemory,NtWriteVirtualMemory -o s
 ### Script Output
 
 ```
-PS C:\Projects\SysWhispers2> py .\syswhispers.py --preset common --out-file syscom
+PS C:\Projects\SysWhispers2> py .\syswhispers.py --preset common --out-file syscalls_common
 
                   .                         ,--. 
 ,-. . . ,-. . , , |-. o ,-. ,-. ,-. ,-. ,-.    / 
@@ -58,8 +58,9 @@ SysWhispers2: Why call the kernel when you can whisper?
 Common functions selected.
 
 Complete! Files written to:
-        syscom.asm
-        syscom.h
+        syscalls_common.h
+        syscalls_common.c
+        syscalls_common_stubs.asm
 ```
 
 ### Before-and-After Example of Classic `CreateRemoteThread` DLL Injection
@@ -138,9 +139,9 @@ Using the `--preset common` switch will create a header/ASM pair with the follow
 
 ## Importing into Visual Studio
 
-1. Copy the generated H/ASM files into the project folder.
+1. Copy the generated H/C/ASM files into the project folder.
 2. In Visual Studio, go to *Project* → *Build Customizations...* and enable MASM.
-3. In the *Solution Explorer*, add the .h and .asm files to the project as header and source files, respectively.
+3. In the *Solution Explorer*, add the .h and .c/.asm files to the project as header and source files, respectively.
 4. Go to the properties of the ASM file, and set the *Item Type* to *Microsoft Macro Assembler*.
 5. Ensure that the project platform is set to x64. 32-bit projects are not supported at this time.
 

@@ -2,8 +2,9 @@
 
 import argparse
 import json
-import struct
+import os
 import random
+import struct
 
 
 class SysWhispers(object):
@@ -18,8 +19,18 @@ class SysWhispers(object):
         elif any([f not in self.prototypes.keys() for f in function_names]):
             raise ValueError('Prototypes are not available for one or more of the requested functions.')
 
+        # Write C file.
+        with open ('./data/base.c', 'rb') as base_source:
+            with open(f'{basename}.c', 'wb') as output_source:
+                base_source_contents = base_source.read().decode()
+                base_source_contents = base_source_contents.replace('<BASENAME>', os.path.basename(basename), 1)
+                output_source.write(base_source_contents.encode())
+
         # Write ASM file.
-        with open(f'{basename}.asm', 'wb') as output_asm:
+        basename_suffix = 'stubs'
+        basename_suffix = basename_suffix.capitalize() if basename.istitle() else basename_suffix
+        basename_suffix = f'_{basename_suffix}' if '_' in basename else basename_suffix
+        with open(f'{basename}{basename_suffix}.asm', 'wb') as output_asm:
             output_asm.write(b'.code\n\nEXTERN SW2_GetSyscallNumber: PROC\n\n')
             for function_name in function_names:
                 output_asm.write((self._get_function_asm_code(function_name) + '\n').encode())
@@ -43,9 +54,13 @@ class SysWhispers(object):
                 for function_name in function_names:
                     output_header.write((self._get_function_prototype(function_name) + '\n\n').encode())
 
+                # Write the endif line.
+                output_header.write('#endif\n'.encode())
+
         print('Complete! Files written to:')
-        print(f'\t{basename}.asm')
         print(f'\t{basename}.h')
+        print(f'\t{basename}.c')
+        print(f'\t{basename}{basename_suffix}.asm')
 
     def _get_typedefs(self, function_names: list) -> list:
         def _names_to_ids(names: list) -> list:
