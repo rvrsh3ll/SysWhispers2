@@ -6,7 +6,7 @@ All core syscalls are supported from Windows XP to Windows 10. Example generated
 
 ## Difference Between SysWhispers 1 and 2
 
-The usage is almost identical to SysWhispers1 but you don't have to specify which versions of Windows to support. Most of the changes are under the hood. It no longer relies on j00ru's [syscall tables](https://github.com/j00ru/windows-syscalls), and instead uses the "[sorting by system call address](https://www.mdsec.co.uk/2020/12/bypassing-user-mode-hooks-and-direct-invocation-of-system-calls-for-red-teams/)" technique popularized by [@modexpblog](https://twitter.com/modexpblog). This significantly reduces the size of the syscall stubs.
+The usage is almost identical to [SysWhispers1](https://github.com/jthuraisamy/SysWhispers) but you don't have to specify which versions of Windows to support. Most of the changes are under the hood. It no longer relies on [@j00ru](https://twitter.com/j00ru)'s [syscall tables](https://github.com/j00ru/windows-syscalls), and instead uses the "[sorting by system call address](https://www.mdsec.co.uk/2020/12/bypassing-user-mode-hooks-and-direct-invocation-of-system-calls-for-red-teams/)" technique popularized by [@modexpblog](https://twitter.com/modexpblog). This significantly reduces the size of the syscall stubs.
 
 The specific implementation in SysWhispers2 is a variation of @modexpblog's code in his post. One difference is that the function name hashes are randomized on each generation. Another [implementation](https://www.crummie5.club/freshycalls/) by [@ElephantSe4l](https://twitter.com/ElephantSe4l) is also worth checking out.
 
