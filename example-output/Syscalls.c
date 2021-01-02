@@ -1,5 +1,8 @@
 #include "Syscalls.h"
 
+// Code below is adapted from @modexpblog. Read linked article for more details.
+// https://www.mdsec.co.uk/2020/12/bypassing-user-mode-hooks-and-direct-invocation-of-system-calls-for-red-teams
+
 SW2_SYSCALL_LIST SW2_SyscallList;
 
 DWORD SW2_HashSyscall(PCSTR FunctionName)
@@ -40,7 +43,7 @@ BOOL SW2_PopulateSyscallList()
 
         ExportDirectory = (PIMAGE_EXPORT_DIRECTORY)SW2_RVA2VA(ULONG_PTR, DllBase, VirtualAddress);
 
-        // If this is NTDLL.dll, exit loop
+        // If this is NTDLL.dll, exit loop.
         PCHAR DllName = SW2_RVA2VA(PCHAR, DllBase, ExportDirectory->Name);
 
         if ((*(ULONG*)DllName | 0x20202020) != 'ldtn') continue;
